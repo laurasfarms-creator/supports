@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - LAURA FARMS</title>
+<style>
+* {margin: 0; padding: 0; box-sizing: border-box;}
+body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; line-height: 1.6;}
+header {background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%); color: white; padding: 40px 20px; text-align: center;}
+header h1 {font-size: 3em; margin-bottom: 10px;}
+header p {font-size: 1.2em; opacity: 0.9;}
+nav {background: #1b5e20; padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+nav a {color: white; margin: 0 20px; text-decoration: none; font-weight: 600; font-size: 1.1em; transition: color 0.3s;}
+nav a:hover {color: #81c784;}
+.container {max-width: 1200px; margin: 0 auto; padding: 20px;}
+section {padding: 60px 20px;}
+h2 {color: #1b5e20; font-size: 2.2em; margin-bottom: 15px; text-align: center;}
+.section-desc {text-align: center; color: #666; margin-bottom: 50px; font-size: 1.1em;}
+
+/* Contact Grid */
+.contact-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto;}
+.contact-info {background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);}
+.contact-info h3 {color: #1b5e20; font-size: 1.5em; margin-bottom: 25px;}
+.info-item {display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;}
+.info-icon {font-size: 1.5em; color: #2e7d32;}
+.info-content h4 {color: #333; margin-bottom: 5px;}
+.info-content p {color: #666;}
+.info-content a {color: #2e7d32; text-decoration: none;}
+.info-content a:hover {text-decoration: underline;}
+
+/* Contact Form */
+.contact-form {background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);}
+.contact-form h3 {color: #1b5e20; font-size: 1.5em; margin-bottom: 25px;}
+.form-group {margin-bottom: 20px;}
+.form-group label {display: block; margin-bottom: 8px; color: #333; font-weight: 600;}
+.form-group input, .form-group select, .form-group textarea {width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; font-family: inherit;}
+.form-group textarea {min-height: 150px; resize: vertical;}
+.submit-btn {background: #2e7d32; color: white; border: none; padding: 15px 40px; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 1.1em; width: 100%; transition: background 0.3s;}
+.submit-btn:hover {background: #1b5e20;}
+
+/* Business Hours */
+.hours-section {background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%); color: white; padding: 60px 20px; margin-top: 60px; text-align: center;}
+.hours-section h2 {color: white; margin-bottom: 30px;}
+.hours-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 800px; margin: 0 auto;}
+.hours-item {padding: 20px;}
+.hours-item h4 {font-size: 1.2em; margin-bottom: 10px;}
+.hours-item p {opacity: 0.9;}
+
+/* Quick Actions */
+.quick-actions {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1000px; margin: 60px auto;}
+.action-card {background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s;}
+.action-card:hover {transform: translateY(-5px);}
+.action-icon {font-size: 3em; margin-bottom: 20px;}
+.action-card h3 {color: #1b5e20; margin-bottom: 15px;}
+.action-card p {color: #666; margin-bottom: 20px;}
+.action-btn {display: inline-block; background: #2e7d32; color: white; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: 600; transition: background 0.3s;}
+.action-btn:hover {background: #1b5e20;}
+
+.whatsapp {position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999; display: flex; align-items: center; gap: 10px;}
+.whatsapp:hover {background: #128C7E;}
+footer {background: #1b5e20; color: white; text-align: center; padding: 40px 20px;}
+footer p {margin: 5px 0;}
+.footer-links {margin-top: 20px;}
+.footer-links a {color: #81c784; text-decoration: none; margin: 0 15px;}
+.footer-links a:hover {text-decoration: underline;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>LAURA FARMS</h1>
+<p>Get in Touch With Our Team</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="tools.html">Farm Tools</a>
+<a href="jobs.html">Farm Jobs</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+
+<section>
+<h2>Contact Us</h2>
+<p class="section-desc">Have questions about our equipment or services? We're here to help. Reach out to us through any of the channels below.</p>
+
+<div class="contact-grid">
+<div class="contact-info">
+<h3>Contact Information</h3>
+
+<div class="info-item">
+<div class="info-icon">📱</div>
+<div class="info-content">
+<h4>WhatsApp</h4>
+<p><a href="https://wa.me/447360212966" target="_blank">+44 7360 212966</a></p>
+<p style="font-size: 0.9em; color: #999;">Fastest response time</p>
+</div>
+</div>
+
+<div class="info-item">
+<div class="info-icon">📧</div>
+<div class="info-content">
+<h4>Email</h4>
+<p><a href="mailto:info@laurafarms.com">info@laurafarms.com</a></p>
+</div>
+</div>
+
+<div class="info-item">
+<div class="info-icon">🏢</div>
+<div class="info-content">
+<h4>Business Hours</h4>
+<p>Monday - Friday: 8:00 AM - 6:00 PM CST</p>
+<p>Saturday: 9:00 AM - 2:00 PM CST</p>
+<p>Sunday: Closed</p>
+</div>
+</div>
+
+<div class="info-item">
+<div class="info-icon">🌐</div>
+<div class="info-content">
+<h4>Social Media</h4>
+<p>Follow us for updates and promotions</p>
+<p style="margin-top: 10px;">
+<a href="#" style="margin-right: 15px;">Facebook</a>
+<a href="#" style="margin-right: 15px;">Instagram</a>
+<a href="#">LinkedIn</a>
+</p>
+</div>
+</div>
+</div>
+
+<div class="contact-form">
+<h3>Send Us a Message</h3>
+<form onsubmit="submitContactForm(event)">
+<div class="form-group">
+<label>Your Name *</label>
+<input type="text" id="contactName" required>
+</div>
+<div class="form-group">
+<label>Email Address *</label>
+<input type="email" id="contactEmail" required>
+</div>
+<div class="form-group">
+<label>Phone Number</label>
+<input type="tel" id="contactPhone">
+</div>
+<div class="form-group">
+<label>Subject *</label>
+<select id="contactSubject" required>
+<option value="">Select a subject...</option>
+<option value="equipment">Equipment Inquiry</option>
+<option value="order">Order Question</option>
+<option value="job">Job Application</option>
+<option value="support">Technical Support</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div class="form-group">
+<label>Message *</label>
+<textarea id="contactMessage" placeholder="How can we help you?" required></textarea>
+</div>
+<button type="submit" class="submit-btn">Send Message</button>
+</form>
+</div>
+</div>
+
+<div class="quick-actions">
+<div class="action-card">
+<div class="action-icon">🚜</div>
+<h3>Browse Equipment</h3>
+<p>View our full catalog of farm tools and machinery with real USA prices.</p>
+<a href="tools.html" class="action-btn">View Catalog</a>
+</div>
+<div class="action-card">
+<div class="action-icon">💼</div>
+<h3>Find a Job</h3>
+<p>Explore current farm job openings across the United States.</p>
+<a href="jobs.html" class="action-btn">View Jobs</a>
+</div>
+<div class="action-card">
+<div class="action-icon">💬</div>
+<h3>Chat on WhatsApp</h3>
+<p>Get instant answers to your questions via WhatsApp.</p>
+<a href="https://wa.me/447360212966" class="action-btn" target="_blank">Start Chat</a>
+</div>
+</div>
+</section>
+
+</div>
+
+<section class="hours-section">
+<h2>We're Here to Help</h2>
+<div class="hours-grid">
+<div class="hours-item">
+<h4>📞 Sales Inquiries</h4>
+<p>Get quotes and product information</p>
+</div>
+<div class="hours-item">
+<h4>🔧 Technical Support</h4>
+<p>Equipment troubleshooting help</p>
+</div>
+<div class="hours-item">
+<h4>💼 Job Applications</h4>
+<p>Apply for farm positions</p>
+</div>
+<div class="hours-item">
+<h4>📦 Order Status</h4>
+<p>Track your equipment orders</p>
+</div>
+</div>
+</section>
+
+<a class="whatsapp" href="https://wa.me/447360212966" target="_blank">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.09-1.35C8.47 21.51 10.18 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.66 0-3.22-.48-4.56-1.31l-.33-.2-3.03.8.81-2.95-.21-.33C3.79 14.47 3.25 12.79 3.25 11c0-4.83 3.92-8.75 8.75-8.75S20.75 6.17 20.75 11 16.83 19.75 12 19.75zm4.43-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.015-.37.105-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.46-.4-.4-.54-.41-.14 0-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.69 2.58 4.1 3.62.57.25 1.02.39 1.37.5.57.18 1.09.16 1.5.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+Chat on WhatsApp
+</a>
+
+<footer>
+<p><strong>LAURA FARMS</strong></p>
+<p>Premium Farm Equipment & Agricultural Solutions</p>
+<p>WhatsApp: +44 7360 212966</p>
+<div class="footer-links">
+<a href="index.html">Home</a>
+<a href="tools.html">Farm Tools</a>
+<a href="jobs.html">Farm Jobs</a>
+<a href="contact.html">Contact</a>
+</div>
+<p style="margin-top: 20px; opacity: 0.7;">&copy; 2025 LAURA FARMS. All Rights Reserved.</p>
+</footer>
+
+<script>
+function submitContactForm(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('contactName').value;
+    const email = document.getElementById('contactEmail').value;
+    const phone = document.getElementById('contactPhone').value;
+    const subject = document.getElementById('contactSubject').value;
+    const message = document.getElementById('contactMessage').value;
+    
+    const subjectText = document.getElementById('contactSubject').options[document.getElementById('contactSubject').selectedIndex].text;
+    
+    const waMessage = `NEW MESSAGE - LAURA FARMS%0A%0AFrom: ${name}%0AEmail: ${email}%0APhone: ${phone || 'Not provided'}%0ASubject: ${subjectText}%0A%0AMessage:%0A${message}`;
+    
+    window.open(`https://wa.me/447360212966?text=${waMessage}`, '_blank');
+    
+    alert('Your message has been sent! We will get back to you soon.');
+    event.target.reset();
+}
+</script>
+
+</body>
+</html>

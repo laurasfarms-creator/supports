@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farm Tools Store - LAURA FARMS</title>
+<style>
+* {margin: 0; padding: 0; box-sizing: border-box;}
+body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; line-height: 1.6;}
+header {background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%); color: white; padding: 40px 20px; text-align: center;}
+header h1 {font-size: 3em; margin-bottom: 10px;}
+header p {font-size: 1.2em; opacity: 0.9;}
+nav {background: #1b5e20; padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
+nav a {color: white; margin: 0 20px; text-decoration: none; font-weight: 600; font-size: 1.1em; transition: color 0.3s;}
+nav a:hover {color: #81c784;}
+.container {max-width: 1400px; margin: 0 auto; padding: 20px;}
+section {padding: 40px 20px;}
+h2 {color: #1b5e20; font-size: 2.2em; margin-bottom: 10px; text-align: center;}
+.section-desc {text-align: center; color: #666; margin-bottom: 40px; font-size: 1.1em;}
+.category {margin-bottom: 60px;}
+.category-title {background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%); color: white; padding: 15px 30px; font-size: 1.5em; font-weight: 600; margin-bottom: 30px; border-radius: 5px; display: inline-block;}
+.store {display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px;}
+.card {background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s;}
+.card:hover {transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15);}
+.card img {width: 100%; height: 200px; object-fit: cover;}
+.card-content {padding: 20px;}
+.card h4 {color: #1b5e20; font-size: 1.3em; margin-bottom: 8px;}
+.card .brand {color: #666; font-size: 0.9em; margin-bottom: 10px;}
+.card .specs {color: #888; font-size: 0.85em; margin-bottom: 15px; line-height: 1.4;}
+.card .price {color: #2e7d32; font-size: 1.6em; font-weight: bold; margin-bottom: 15px;}
+.card .price-note {color: #999; font-size: 0.8em;}
+button {background: #2e7d32; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: 600; width: 100%; transition: background 0.3s;}
+button:hover {background: #1b5e20;}
+button:disabled {background: #ccc; cursor: not-allowed;}
+.filter-bar {background: white; padding: 20px; border-radius: 10px; margin-bottom: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: flex; flex-wrap: wrap; gap: 15px; align-items: center; justify-content: center;}
+.filter-bar select, .filter-bar input {padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;}
+.filter-bar button {width: auto; padding: 10px 25px;}
+.whatsapp {position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999; display: flex; align-items: center; gap: 10px;}
+.whatsapp:hover {background: #128C7E;}
+footer {background: #1b5e20; color: white; text-align: center; padding: 40px 20px; margin-top: 60px;}
+footer p {margin: 5px 0;}
+.footer-links {margin-top: 20px;}
+.footer-links a {color: #81c784; text-decoration: none; margin: 0 15px;}
+.footer-links a:hover {text-decoration: underline;}
+.stock-status {display: inline-block; padding: 4px 10px; border-radius: 3px; font-size: 0.8em; font-weight: 600; margin-bottom: 10px;}
+.in-stock {background: #e8f5e9; color: #2e7d32;}
+.low-stock {background: #fff3e0; color: #ef6c00;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>LAURA FARMS</h1>
+<p>Premium Farm Equipment at Competitive Prices</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="tools.html">Farm Tools</a>
+<a href="jobs.html">Farm Jobs</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+
+<section>
+<h2>Farm Tools & Equipment Store</h2>
+<p class="section-desc">Browse our extensive collection of farm equipment with real USA market prices. All prices include warranty and shipping options.</p>
+
+<div class="filter-bar">
+<select id="categoryFilter">
+<option value="all">All Categories</option>
+<option value="hand">Hand Tools</option>
+<option value="tractor">Tractors</option>
+<option value="planting">Planting Equipment</option>
+<option value="irrigation">Irrigation Systems</option>
+<option value="harvesting">Harvesting Equipment</option>
+<option value="tillage">Tillage Equipment</option>
+</select>
+<select id="priceFilter">
+<option value="all">All Prices</option>
+<option value="under100">Under $100</option>
+<option value="100to1000">$100 - $1,000</option>
+<option value="1000to10000">$1,000 - $10,000</option>
+<option value="over10000">Over $10,000</option>
+</select>
+<input type="text" id="searchFilter" placeholder="Search products...">
+<button onclick="filterProducts()">Filter</button>
+</div>
+
+<!-- HAND TOOLS -->
+<div class="category" data-category="hand">
+<div class="category-title">🛠️ Hand Tools</div>
+<div class="store">
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/c9425fc2f754deb2898b918fd222106351ec2f9c.jpg" alt="Garden Hoe">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Professional Garden Hoe</h4>
+<p class="brand">Brand: Razor-Back</p>
+<p class="specs">54" Fiberglass Handle, Forged Steel Head</p>
+<p class="price">$24.99</p>
+<button onclick="buyOnce(this,'Professional Garden Hoe','$24.99')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.humboldtmfg.com/ac608e45c95a73c453ebbd7432e0068558c7cb56.png" alt="Square Point Shovel">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Square Point Shovel</h4>
+<p class="brand">Brand: Bully Tools</p>
+<p class="specs">48" Fiberglass Handle, 14-Gauge Steel</p>
+<p class="price">$34.99</p>
+<button onclick="buyOnce(this,'Square Point Shovel','$34.99')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/f2fbe6ca52e0708e0a698ad329b5e6b3ecc60206.jpg" alt="Leaf Rake">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>24-Tine Leaf Rake</h4>
+<p class="brand">Brand: True Temper</p>
+<p class="specs">54" Hardwood Handle, Steel Tines</p>
+<p class="price">$19.99</p>
+<button onclick="buyOnce(this,'24-Tine Leaf Rake','$19.99')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/8c5e4051445db25411ab89a12385dbee2a626bcb.jpg" alt="Felco Pruning Shears">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Professional Pruning Shears</h4>
+<p class="brand">Brand: Felco</p>
+<p class="specs">Model F-2, Forged Aluminum, Swiss Made</p>
+<p class="price">$71.49</p>
+<button onclick="buyOnce(this,'Felco Pruning Shears F-2','$71.49')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/3e35f4f9244133183ec649f943f34a9358a6d4b1.jpg" alt="Garden Fork">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>4-Tine Garden Fork</h4>
+<p class="brand">Brand: Truper</p>
+<p class="specs">30" D-Handle, Forged Steel</p>
+<p class="price">$42.99</p>
+<button onclick="buyOnce(this,'4-Tine Garden Fork','$42.99')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/images.thdstatic.com/8615abf5cd365982a54626b71259cf627eae51b6.jpg" alt="Wheelbarrow">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>6 Cu. Ft. Wheelbarrow</h4>
+<p class="brand">Brand: True Temper</p>
+<p class="specs">Steel Tray, Hardwood Handles, Pneumatic Tire</p>
+<p class="price">$89.99</p>
+<button onclick="buyOnce(this,'6 Cu Ft Wheelbarrow','$89.99')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/ed9bdf1973d6f71ac0df2ab3e8712a4c2aa7db1e.jpg" alt="Post Hole Digger">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Post Hole Digger</h4>
+<p class="brand">Brand: Ames</p>
+<p class="specs">48" Handles, 6" Spread, Steel Blades</p>
+<p class="price">$54.99</p>
+<button onclick="buyOnce(this,'Post Hole Digger','$54.99')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/c14a29bea1db3d832349296edab6fb00f99a9e06.jpg" alt="Loppers">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Heavy Duty Loppers</h4>
+<p class="brand">Brand: Fiskars</p>
+<p class="specs">28" PowerGear2, Cuts up to 2" branches</p>
+<p class="price">$39.99</p>
+<button onclick="buyOnce(this,'Heavy Duty Loppers','$39.99')">Buy Now</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- TRACTORS -->
+<div class="category" data-category="tractor">
+<div class="category-title">🚜 Tractors</div>
+<div class="store">
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.deere.com/0f696cf30e4dde9afb181a0745e2553aae7ee423.jpg" alt="John Deere 1023E">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>John Deere 1023E</h4>
+<p class="brand">Brand: John Deere</p>
+<p class="specs">22 HP, Sub-Compact Utility Tractor, 4WD</p>
+<p class="price">$15,999</p>
+<p class="price-note">Starting MSRP</p>
+<button onclick="buyOnce(this,'John Deere 1023E','$15,999')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.deere.com/514ef500492faed46ad00096ee37806750f69343.jpg" alt="John Deere 1025R">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>John Deere 1025R</h4>
+<p class="brand">Brand: John Deere</p>
+<p class="specs">24 HP, Sub-Compact Utility Tractor, AutoConnect</p>
+<p class="price">$18,499</p>
+<p class="price-note">Starting MSRP</p>
+<button onclick="buyOnce(this,'John Deere 1025R','$18,499')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.trulandequip.com/b6b4048652cc669e848db6092bebb2332dc6a156.jpg" alt="John Deere 2025R">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>John Deere 2025R</h4>
+<p class="brand">Brand: John Deere</p>
+<p class="specs">24 HP, Compact Tractor with 120R Loader</p>
+<p class="price">$23,775</p>
+<p class="price-note">With Loader Package</p>
+<button onclick="buyOnce(this,'John Deere 2025R','$23,775')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.deere.com/0f696cf30e4dde9afb181a0745e2553aae7ee423.jpg" alt="John Deere 3025E">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>John Deere 3025E</h4>
+<p class="brand">Brand: John Deere</p>
+<p class="specs">24 HP, Compact Utility Tractor, 4WD</p>
+<p class="price">$22,999</p>
+<p class="price-note">Starting MSRP</p>
+<button onclick="buyOnce(this,'John Deere 3025E','$22,999')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.deere.com/4505d4389cf8bd3aef73e8793ddc7dd646ee05b9.jpg" alt="John Deere 3038E">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>John Deere 3038E</h4>
+<p class="brand">Brand: John Deere</p>
+<p class="specs">37 HP, Compact Utility Tractor, Hydrostatic</p>
+<p class="price">$28,999</p>
+<p class="price-note">Starting MSRP</p>
+<button onclick="buyOnce(this,'John Deere 3038E','$28,999')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.deere.com/4505d4389cf8bd3aef73e8793ddc7dd646ee05b9.jpg" alt="John Deere 5075E">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>John Deere 5075E</h4>
+<p class="brand">Brand: John Deere</p>
+<p class="specs">75 HP, Utility Tractor, 12F/12R Transmission</p>
+<p class="price">$34,999</p>
+<p class="price-note">Starting MSRP</p>
+<button onclick="buyOnce(this,'John Deere 5075E','$34,999')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/arrow-app-llc.imgix.net/69f2899f936f908af2e1a1cca23c9734e8bdf91b.jpg" alt="Kubota BX2380">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Kubota BX2380</h4>
+<p class="brand">Brand: Kubota</p>
+<p class="specs">23 HP, Sub-Compact Tractor, 4WD</p>
+<p class="price">$14,999</p>
+<p class="price-note">Starting MSRP</p>
+<button onclick="buyOnce(this,'Kubota BX2380','$14,999')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/cdpcdn.dx1app.com/9b72741964508f850f17ccf3cb529db43f3ff8fb.jpg" alt="Mahindra 2638">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Mahindra 2638</h4>
+<p class="brand">Brand: Mahindra</p>
+<p class="specs">38 HP, Compact Tractor, 4WD, Loader Ready</p>
+<p class="price">$24,999</p>
+<p class="price-note">Starting MSRP</p>
+<button onclick="buyOnce(this,'Mahindra 2638','$24,999')">Buy Now</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- PLANTING EQUIPMENT -->
+<div class="category" data-category="planting">
+<div class="category-title">🌱 Planting & Seeding Equipment</div>
+<div class="store">
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/photos.machinefinder.com/14f60ba077e1db2210f568bc78a2d952c49d74b5.jpg" alt="John Deere 1770NT Planter">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>2-Row Corn Planter</h4>
+<p class="brand">Brand: John Deere</p>
+<p class="specs">3-Point Hitch, Fertilizer Box, Marker Arms</p>
+<p class="price">$5,950</p>
+<button onclick="buyOnce(this,'John Deere 2-Row Corn Planter','$5,950')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/landoll.com/acb6e78e31b329e31074ba436a2471db04bf8a13.jpg" alt="Brillion Grain Drill">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>12' Grain Drill</h4>
+<p class="brand">Brand: Brillion</p>
+<p class="specs">SS112 Model, Single Box, 7.5" Spacing</p>
+<p class="price">$8,499</p>
+<button onclick="buyOnce(this,'Brillion SS112 Grain Drill','$8,499')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/c47d5b6e3da13456ed4e1e788a1b0406abee6d11.jpg" alt="King Kutter Rotary Tiller">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>48" Rotary Tiller</h4>
+<p class="brand">Brand: King Kutter</p>
+<p class="specs">3-Point Hitch, PTO Driven, 6 Blades</p>
+<p class="price">$1,899</p>
+<button onclick="buyOnce(this,'King Kutter 48\" Tiller','$1,899')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/photos.machinefinder.com/14f60ba077e1db2210f568bc78a2d952c49d74b5.jpg" alt="Precision Planter">
+<div class="card-content">
+<span class="stock-status low-stock">Low Stock</span>
+<h4>16-Row Precision Planter</h4>
+<p class="brand">Brand: John Deere</p>
+<p class="specs">1770NT, 30" Spacing, Vacuum Meter</p>
+<p class="price">$45,000</p>
+<p class="price-note">Used, Excellent Condition</p>
+<button onclick="buyOnce(this,'John Deere 1770NT Planter','$45,000')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/landoll.com/acb6e78e31b329e31074ba436a2471db04bf8a13.jpg" alt="No-Till Drill">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>15' No-Till Drill</h4>
+<p class="brand">Brand: Great Plains</p>
+<p class="specs">3P606NT, 6" Spacing, Double Disc</p>
+<p class="price">$18,500</p>
+<button onclick="buyOnce(this,'Great Plains 15 No-Till Drill','$18,500')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/4b17a837bf97a183f0385afd376d66bf989d6655.jpg" alt="Broadcast Seeder">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>3-Point Broadcast Seeder</h4>
+<p class="brand">Brand: Land Pride</p>
+<p class="specs">OS1548, 48" Spread Width, PTO</p>
+<p class="price">$1,299</p>
+<button onclick="buyOnce(this,'Land Pride Broadcast Seeder','$1,299')">Buy Now</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- IRRIGATION SYSTEMS -->
+<div class="category" data-category="irrigation">
+<div class="category-title">💧 Irrigation Systems</div>
+<div class="store">
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/ea8905baa4e95b3be3267097192ef95c2cf42e76.jpg" alt="Honda Water Pump">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>2" Gas Water Pump</h4>
+<p class="brand">Brand: Honda</p>
+<p class="specs">5.5 HP, 164 GPM, 2" Suction/Discharge</p>
+<p class="price">$649</p>
+<button onclick="buyOnce(this,'Honda 2\" Water Pump','$649')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/361e3984a2396c9da06fe5dcbb88ef9bc30033a9.jpg" alt="Rain Bird Sprinkler">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Impact Sprinkler System</h4>
+<p class="brand">Brand: Rain Bird</p>
+<p class="specs">5-Pack, 35' Radius, Brass Construction</p>
+<p class="price">$89.99</p>
+<button onclick="buyOnce(this,'Rain Bird Impact Sprinkler 5-Pack','$89.99')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/4f0e67ca5720134be8ed980850e85e38a33c6ee1.jpg" alt="Drip Irrigation Kit">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Drip Irrigation Kit</h4>
+<p class="brand">Brand: Rain Bird</p>
+<p class="specs">Covers 1/4 Acre, 500' Tubing, Emitters</p>
+<p class="price">$149</p>
+<button onclick="buyOnce(this,'Rain Bird Drip Kit','$149')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.irrigationking.com/a1811bbde6c126a0f616e9bd3bbc4abca1f85ceb.jpg" alt="Kifco Hose Reel">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Hose Reel Irrigation System</h4>
+<p class="brand">Brand: Kifco</p>
+<p class="specs">ST4C, 980' x 3" Hose, PTO Driven</p>
+<p class="price">$29,500</p>
+<button onclick="buyOnce(this,'Kifco ST4C Hose Reel','$29,500')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.agrivi.com/4a2f4950579cb1d01c4228633e1d79ee29188a01.jpg" alt="Center Pivot">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Center Pivot System</h4>
+<p class="brand">Brand: Valley</p>
+<p class="specs">1/4 Mile, 7-Tower, GPS Guidance Ready</p>
+<p class="price">$85,000</p>
+<p class="price-note">Starting Price</p>
+<button onclick="buyOnce(this,'Valley Center Pivot','$85,000')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.irrigationking.com/aefc32fa2c0f82afe3f47634040adb35b2b8324b.jpg" alt="Traveling Gun">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Traveling Gun Irrigator</h4>
+<p class="brand">Brand: Cadman</p>
+<p class="specs">4000 Series, 1200' x 4" Hose, Computer</p>
+<p class="price">$26,000</p>
+<button onclick="buyOnce(this,'Cadman 4000 Traveling Gun','$26,000')">Buy Now</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- HARVESTING EQUIPMENT -->
+<div class="category" data-category="harvesting">
+<div class="category-title">🌾 Harvesting Equipment</div>
+<div class="store">
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.deere.com/173124a5c27d3d256229688dc877bc76fd2b91d6.jpg" alt="John Deere S760 Combine">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>John Deere S760 Combine</h4>
+<p class="brand">Brand: John Deere</p>
+<p class="specs">333 HP, 300 bu Tank, AutoSteer Ready</p>
+<p class="price">$435,000</p>
+<p class="price-note">2025 Model</p>
+<button onclick="buyOnce(this,'John Deere S760 Combine','$435,000')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/vanwall.com/0b4d7cf27f3834428cbc7a7224dd0d192b6e2251.jpg" alt="John Deere S770 Combine">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>John Deere S770 Combine</h4>
+<p class="brand">Brand: John Deere</p>
+<p class="specs">391 HP, 350 bu Tank, Premium Cab</p>
+<p class="price">$475,000</p>
+<p class="price-note">2025 Model</p>
+<button onclick="buyOnce(this,'John Deere S770 Combine','$475,000')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/i.ytimg.com/1fd4dcef6322701551e07a9ebdc4ec45ec7fcffb.jpg" alt="Case IH 8250 Combine">
+<div class="card-content">
+<span class="stock-status low-stock">Low Stock</span>
+<h4>Case IH 8250 Combine</h4>
+<p class="brand">Brand: Case IH</p>
+<p class="specs">550 HP, 350 bu Tank, AFS Connect</p>
+<p class="price">$347,479</p>
+<p class="price-note">2019 Model, Low Hours</p>
+<button onclick="buyOnce(this,'Case IH 8250 Combine','$347,479')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/media.sandhills.com/bce00fe204cfaee806bc1ac15f8e7f47fa2d3992.axd" alt="MacDon Swather">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Self-Propelled Swather</h4>
+<p class="brand">Brand: MacDon</p>
+<p class="specs">M1240, 16' Header, 200 HP</p>
+<p class="price">$125,000</p>
+<button onclick="buyOnce(this,'MacDon M1240 Swather','$125,000')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/cnhi-p-001-delivery.sitecorecontenthub.cloud/be08e103c6c931e86202aebbb672945feeeaa59f" alt="New Holland Big Baler">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Large Square Baler</h4>
+<p class="brand">Brand: New Holland</p>
+<p class="specs">Big Baler 340, 3x4 Bales, Twine/Net</p>
+<p class="price">$85,000</p>
+<button onclick="buyOnce(this,'New Holland Big Baler 340','$85,000')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/photos.machinefinder.com/1bcf928d8d8533f4dfeb9f4da4127d0d07e99f8a.jpg" alt="John Deere Round Baler">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Round Baler</h4>
+<p class="brand">Brand: John Deere</p>
+<p class="specs">460M, 4x5 Bales, MegaWide Pickup</p>
+<p class="price">$42,000</p>
+<button onclick="buyOnce(this,'John Deere 460M Baler','$42,000')">Buy Now</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- TILLAGE EQUIPMENT -->
+<div class="category" data-category="tillage">
+<div class="category-title">🌿 Tillage Equipment</div>
+<div class="store">
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.deere.com/42dd9ff195077a9f85a61a3a84676597cfcb2c8b.jpg" alt="John Deere Chisel Plow">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>9-Shank Chisel Plow</h4>
+<p class="brand">Brand: John Deere</p>
+<p class="specs">714, 11' Width, 3-Point Hitch</p>
+<p class="price">$8,500</p>
+<button onclick="buyOnce(this,'John Deere 714 Chisel Plow','$8,500')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/landoll.com/acb6e78e31b329e31074ba436a2471db04bf8a13.jpg" alt="Landoll Disc Harrow">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>20' Disc Harrow</h4>
+<p class="brand">Brand: Landoll</p>
+<p class="specs">6230, 24" Blades, Tandem Axle</p>
+<p class="price">$15,900</p>
+<button onclick="buyOnce(this,'Landoll 6230 Disc Harrow','$15,900')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.deere.com/58859f4b670eb0bf4bd51df1af0e2d632787205c.jpg" alt="John Deere Field Cultivator">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Field Cultivator</h4>
+<p class="brand">Brand: John Deere</p>
+<p class="specs">2230FH, 23', Floating Hitch</p>
+<p class="price">$22,500</p>
+<button onclick="buyOnce(this,'John Deere 2230FH Cultivator','$22,500')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/i.ytimg.com/fb75e1480ef8d8f78ca7ad5a9580bb192faa9307.jpg" alt="Kverneland Plow">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>5-Bottom Moldboard Plow</h4>
+<p class="brand">Brand: Kverneland</p>
+<p class="specs">150S, 14" Bottoms, On-Land</p>
+<p class="price">$18,999</p>
+<button onclick="buyOnce(this,'Kverneland 150S Plow','$18,999')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/blog.machinefinder.com/3bdc515b32a7d674d0f6cab85fe4863fe284a67f.png" alt="DMI Subsoiler">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>5-Shank Subsoiler</h4>
+<p class="brand">Brand: DMI</p>
+<p class="specs">Ecolo-Tiger 530B, 12' Width</p>
+<p class="price">$12,500</p>
+<button onclick="buyOnce(this,'DMI Ecolo-Tiger 530B','$12,500')">Buy Now</button>
+</div>
+</div>
+<div class="card">
+<img src="https://kimi-web-img.moonshot.cn/img/www.deere.com/58859f4b670eb0bf4bd51df1af0e2d632787205c.jpg" alt="Land Roller">
+<div class="card-content">
+<span class="stock-status in-stock">In Stock</span>
+<h4>Land Roller</h4>
+<p class="brand">Brand: Mandako</p>
+<p class="specs">42', 24" Drums, Hydraulic Fold</p>
+<p class="price">$28,000</p>
+<button onclick="buyOnce(this,'Mandako 42 Land Roller','$28,000')">Buy Now</button>
+</div>
+</div>
+</div>
+</div>
+
+</section>
+</div>
+
+<a class="whatsapp" href="https://wa.me/447360212966" target="_blank">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.09-1.35C8.47 21.51 10.18 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.66 0-3.22-.48-4.56-1.31l-.33-.2-3.03.8.81-2.95-.21-.33C3.79 14.47 3.25 12.79 3.25 11c0-4.83 3.92-8.75 8.75-8.75S20.75 6.17 20.75 11 16.83 19.75 12 19.75zm4.43-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.015-.37.105-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.46-.4-.4-.54-.41-.14 0-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.69 2.58 4.1 3.62.57.25 1.02.39 1.37.5.57.18 1.09.16 1.5.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+Chat on WhatsApp
+</a>
+
+<footer>
+<p><strong>LAURA FARMS</strong></p>
+<p>Premium Farm Equipment & Agricultural Solutions</p>
+<p>WhatsApp: +44 7360 212966</p>
+<div class="footer-links">
+<a href="index.html">Home</a>
+<a href="tools.html">Farm Tools</a>
+<a href="jobs.html">Farm Jobs</a>
+<a href="contact.html">Contact</a>
+</div>
+<p style="margin-top: 20px; opacity: 0.7;">&copy; 2025 LAURA FARMS. All Rights Reserved.</p>
+</footer>
+
+<script>
+function buyOnce(button, product, price){
+    if(button.disabled) return;
+    button.disabled = true;
+    button.textContent = 'Order Sent!';
+    let message = "New Order from LAURA FARMS website:%0AProduct: "+product+"%0APrice: "+price;
+    window.open("https://wa.me/447360212966?text=" + message, "_blank");
+}
+
+function filterProducts() {
+    const category = document.getElementById('categoryFilter').value;
+    const price = document.getElementById('priceFilter').value;
+    const search = document.getElementById('searchFilter').value.toLowerCase();
+    
+    const categories = document.querySelectorAll('.category');
+    
+    categories.forEach(cat => {
+        const catName = cat.getAttribute('data-category');
+        if (category === 'all' || category === catName) {
+            cat.style.display = 'block';
+        } else {
+            cat.style.display = 'none';
+        }
+    });
+    
+    if (search) {
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            const text = card.textContent.toLowerCase();
+            if (text.includes(search)) {
+                card.style.display = 'block';
+                card.closest('.category').style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+}
+</script>
+
+</body>
+</html>
